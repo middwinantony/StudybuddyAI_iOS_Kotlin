@@ -57,7 +57,7 @@ namespace :git do
 
     filepath = dir.join("activity_log.txt")
     timestamp = Time.now.strftime("%Y-%m-%d %H:%M:%S")
-    log_entry = "#{timestamp} - Activity logged: #{rand_activity}\n"
+    log_entry = "#{timestamp} - Activity logged: #{random_activity}\n"
 
     File.open(filepath, "a") { |f| f.write(log_entry) }
   end
