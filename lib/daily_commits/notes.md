@@ -43,3 +43,6 @@
 
 ## 2025-12-23 12:27
 - Analyzed performance metrics
+
+## 2025-12-23 12:27
+- Updated helper methods for better efficiency
