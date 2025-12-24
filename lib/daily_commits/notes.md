@@ -64,3 +64,6 @@
 
 ## 2025-12-24 09:00
 - Reviewed code structure and organization
+
+## 2025-12-24 09:00
+- Updated helper methods for better efficiency
