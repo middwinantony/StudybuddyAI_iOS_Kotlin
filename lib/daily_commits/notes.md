@@ -67,3 +67,6 @@
 
 ## 2025-12-24 09:00
 - Updated helper methods for better efficiency
+
+## 2025-12-25 09:26
+- Refactored code for improved readability
