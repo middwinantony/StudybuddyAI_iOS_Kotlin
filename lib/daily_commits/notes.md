@@ -181,3 +181,6 @@
 
 ## 2026-01-03 09:33
 - Reviewed code structure and organization
+
+## 2026-01-03 10:05
+- Updated helper methods for better efficiency
