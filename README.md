@@ -1,207 +1,145 @@
-# Daily Git Committer
+🌍 StudybuddyAI — Learn Languages Smarter with AI
 
-A Rails application that automatically makes 10-20 random commits to your git repository daily. Perfect for maintaining contribution activity or testing git workflows.
+An AI-powered platform designed to help learners practice, improve, and gain confidence in new languages through personalized exercises, real-world conversations, and adaptive feedback.
 
-## Features
+LinguaAI focuses on practical language usage, not rote memorization — making it ideal for learners preparing for immigration exams, travel, work, or daily life.
 
-- Generates random commits (10-20 per run)
-- Creates various types of code changes:
-  - Ruby code files
-  - Helper modules
-  - Activity logs
-  - Documentation notes
-- Natural commit timing with random delays
-- Varied commit messages
-- Fully automated with cron job
+🚀 Features
 
-## Requirements
+Personalized Learning Paths
 
-- Ruby (version in `.ruby-version`)
-- Rails 7.1+
-- Git
+Tailored exercises based on proficiency level
 
-## Installation
+Adaptive difficulty as you improve
 
-1. Clone or navigate to this repository
-2. Install dependencies:
-   ```bash
-   bundle install
-   ```
+AI Conversation Practice
 
-3. Ensure git is initialized (already done by default)
+Simulated real-world conversations
 
-## Usage
+Context-aware responses
 
-### Manual Execution
+Grammar and vocabulary correction in real time
 
-To manually run the auto-commit task:
+Daily Practice System
 
-```bash
-rake git:auto_commit
-```
+Short, focused daily activities
 
-This will:
-- Generate a random number between 10-20
-- Make that many commits with random code changes
-- Use varied commit messages
-- Add small delays between commits for natural timing
+Vocabulary reinforcement
 
-### Automated Daily Execution with Cron
+Writing and speaking prompts
 
-To set up daily automated commits using cron:
+Progress Tracking
 
-#### 1. Find Your Full Paths
+Learning streaks
 
-First, get the full path to this directory and your Ruby/Rake executables:
+Skill-level indicators
 
-```bash
-# Get current directory path
-pwd
+Improvement insights over time
 
-# Get Ruby path
-which ruby
+Multi-Language Support
 
-# Get bundle path
-which bundle
-```
+Designed to scale across multiple languages
 
-#### 2. Edit Your Crontab
+Ideal for beginners to intermediate learners
 
-Open your crontab for editing:
+🧠 How It Works
 
-```bash
-crontab -e
-```
+Assess Your Level
 
-#### 3. Add the Cron Job
+Quick evaluation to understand your strengths and gaps
 
-Add one of these lines (choose based on when you want commits to run):
+Practice Daily
 
-**Run daily at 9 AM:**
-```bash
-0 9 * * * cd /Users/middwin/code/middwinantony/daily-git-committer && /usr/bin/bundle exec rake git:auto_commit >> /tmp/git-auto-commit.log 2>&1
-```
+AI-generated exercises and conversation scenarios
 
-**Run daily at midnight:**
-```bash
-0 0 * * * cd /Users/middwin/code/middwinantony/daily-git-committer && /usr/bin/bundle exec rake git:auto_commit >> /tmp/git-auto-commit.log 2>&1
-```
+Grammar, vocabulary, and sentence structure feedback
 
-**Run daily at 6 PM:**
-```bash
-0 18 * * * cd /Users/middwin/code/middwinantony/daily-git-committer && /usr/bin/bundle exec rake git:auto_commit >> /tmp/git-auto-commit.log 2>&1
-```
+Learn from Mistakes
 
-**Important:** Replace `/Users/middwin/code/middwinantony/daily-git-committer` with your actual project path, and `/usr/bin/bundle` with your actual bundle path.
+Clear explanations
 
-#### 4. Verify Cron Job
+Examples based on real usage
 
-List your cron jobs to verify:
+Track Progress
 
-```bash
-crontab -l
-```
+Monitor consistency and improvement
 
-#### 5. Check Logs
+🛠 Tech Stack
 
-Monitor the execution logs:
+Backend: Ruby on Rails
 
-```bash
-tail -f /tmp/git-auto-commit.log
-```
+AI Layer: Language model integration (LLM-based)
 
-### Cron Schedule Format
+Database: PostgreSQL
 
-The cron format is: `minute hour day month weekday command`
+Task Automation: Background jobs & schedulers
 
-Examples:
-- `0 9 * * *` - Every day at 9:00 AM
-- `30 14 * * *` - Every day at 2:30 PM
-- `0 */6 * * *` - Every 6 hours
-- `0 9 * * 1-5` - Every weekday at 9:00 AM
+Version Control: Git & GitHub
 
-## What Gets Committed
 
-The rake task creates files in `lib/daily_commits/` directory:
+Ensure you have:
 
-- **Ruby code files**: Random Ruby classes with methods
-- **Helper modules**: Utility helper modules
-- **Activity logs**: Timestamped activity entries
-- **Notes**: Markdown documentation notes
+Ruby (see .ruby-version)
 
-Each commit includes one of these file types with realistic commit messages like:
-- "Update code structure"
-- "Add helper methods"
-- "Refactor utilities"
-- "Improve logging system"
-- And more...
+Rails 7.1+
 
-## Pushing to Remote
+Git
 
-By default, commits are only made locally. To push to a remote repository:
+▶️ Running Locally
+rails db:create db:migrate
+rails server
 
-### Option 1: Manual Push
 
-```bash
-git push origin master
-```
+Then open:
 
-### Option 2: Automated Push in Cron
+http://localhost:3000
 
-Modify the cron job to include a push:
+🧪 Current Status
 
-```bash
-0 9 * * * cd /path/to/daily-git-committer && /path/to/bundle exec rake git:auto_commit && git push origin master >> /tmp/git-auto-commit.log 2>&1
-```
+🚧 Early-stage / MVP
 
-**Warning:** Ensure your git credentials are properly configured for automated pushing (SSH keys or credential helper).
+Core learning flows under development
 
-## Customization
+AI prompt experimentation in progress
 
-To customize the behavior, edit `lib/tasks/auto_commit.rake`:
+UI/UX improvements ongoing
 
-- Change commit range: Modify `rand(10..20)` on line 5
-- Add more commit messages: Update the `generate_commit_message` method
-- Change file types: Modify the `create_random_change` method
-- Adjust delays: Change `sleep(rand(1..3))` on line 22
+This project is being actively iterated and refined.
 
-## Troubleshooting
+🎯 Vision
 
-### Cron Job Not Running
+LinguaAI aims to:
 
-1. Check cron service is running:
-   ```bash
-   # macOS
-   sudo launchctl list | grep cron
+Help learners think in a new language
 
-   # Linux
-   sudo service cron status
-   ```
+Reduce fear of speaking
 
-2. Verify full paths in crontab
-3. Check logs at `/tmp/git-auto-commit.log`
-4. Ensure the script has proper permissions
+Make language learning practical, human, and confidence-driven
 
-### Git Errors
+Future plans include:
 
-1. Ensure git user is configured:
-   ```bash
-   git config user.name "Your Name"
-   git config user.email "your.email@example.com"
-   ```
+Speech input & pronunciation feedback
 
-2. Check repository status:
-   ```bash
-   git status
-   ```
+Exam-focused preparation modules (TCF / IELTS / CELPIP)
 
-## Notes
+Mobile-first experience
 
-- All commits are made to the current branch (usually `master` or `main`)
-- Files are created in `lib/daily_commits/` which is tracked by git
-- Each run is independent and can be run multiple times per day
-- The random number ensures variability in daily commit counts
+🤝 Contributions
 
-## License
+Contributions, ideas, and feedback are welcome.
 
-This project is provided as-is for personal use.
+If you’re interested in:
+
+AI education
+
+Language learning
+
+Applied NLP
+
+Product experimentation
+
+Feel free to open an issue or start a discussion.
+
+📄 License
+
+This project is currently intended for personal and educational use.
