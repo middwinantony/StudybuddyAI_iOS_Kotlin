@@ -328,3 +328,6 @@
 
 ## 2026-01-17 09:52
 - Refactored code for improved readability
+
+## 2026-01-18 09:13
+- Updated helper methods for better efficiency
