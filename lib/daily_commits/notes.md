@@ -391,3 +391,6 @@
 
 ## 2026-01-20 10:34
 - Updated helper methods for better efficiency
+
+## 2026-01-21 19:43
+- Refactored code for improved readability
