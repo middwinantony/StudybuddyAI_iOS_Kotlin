@@ -400,3 +400,6 @@
 
 ## 2026-01-21 19:43
 - Enhanced logging and monitoring capabilities
+
+## 2026-01-21 19:43
+- Updated helper methods for better efficiency
