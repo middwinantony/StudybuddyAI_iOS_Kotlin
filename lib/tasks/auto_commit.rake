@@ -1,11 +1,51 @@
 namespace :git do
   desc "Make random commits (10-20) to maintain daily activity"
   task auto_commit: :environment do
-    # Generate random number of commits between 10 and 20
-    num_commits = rand(10..20)
-    puts "Making #{num_commits} commits today..."
+    state_file = Rails.root.join("tmp", "last_commit_date.txt")
+    today = Date.today
 
-    num_commits.times do |i|
+    # Get the last commit date
+    last_commit_date = if File.exist?(state_file)
+      Date.parse(File.read(state_file).strip)
+    else
+      today - 1.day # If no state file, assume yesterday was last
+    end
+
+    # Check for missed days
+    missed_dates = []
+    current_date = last_commit_date + 1.day
+    while current_date < today
+      missed_dates << current_date
+      current_date += 1.day
+    end
+
+    # Process missed days first
+    if missed_dates.any?
+      puts "⚠️  Detected #{missed_dates.size} missed day(s): #{missed_dates.map(&:to_s).join(', ')}"
+      puts "Creating backdated commits...\n"
+
+      missed_dates.each do |date|
+        make_commits_for_date(date)
+      end
+    end
+
+    # Make commits for today
+    make_commits_for_date(today)
+
+    # Update state file
+    FileUtils.mkdir_p(File.dirname(state_file))
+    File.write(state_file, today.to_s)
+  end
+
+  def make_commits_for_date(date)
+    num_commits = rand(10..20)
+    puts "Making #{num_commits} commits for #{date}..."
+
+    # Distribute commits throughout the day
+    base_time = date.to_time.in_time_zone + 9.hours # Start at 9 AM
+    time_slots = (0...num_commits).map { |i| base_time + (i * (10.hours / num_commits)) + rand(0..1800).seconds }
+
+    time_slots.each_with_index do |commit_time, i|
       # Create or modify a random file
       create_random_change
 
@@ -14,15 +54,20 @@ namespace :git do
 
       # Create commit with timestamp and random message
       commit_message = generate_commit_message
-      system("git commit -m '#{commit_message}'")
 
-      puts "✓ Commit #{i + 1}/#{num_commits}: #{commit_message}"
+      # Set GIT_AUTHOR_DATE and GIT_COMMITTER_DATE for backdating
+      formatted_time = commit_time.strftime("%Y-%m-%d %H:%M:%S")
+      env_vars = {
+        "GIT_AUTHOR_DATE" => formatted_time,
+        "GIT_COMMITTER_DATE" => formatted_time
+      }
 
-      # Small delay to make commits appear more natural
-      sleep(rand(1..3))
+      system(env_vars, "git commit -m '#{commit_message}'")
+
+      puts "✓ Commit #{i + 1}/#{num_commits}: #{commit_message} (#{commit_time.strftime('%H:%M')})"
     end
 
-    puts "\n✅ Successfully made #{num_commits} commits!"
+    puts "✅ Successfully made #{num_commits} commits for #{date}!\n"
   end
 
   def create_random_change
