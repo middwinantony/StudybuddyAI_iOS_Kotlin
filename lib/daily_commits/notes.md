@@ -403,3 +403,6 @@
 
 ## 2026-01-21 19:43
 - Updated helper methods for better efficiency
+
+## 2026-01-26 05:26
+- Refactored code for improved readability
