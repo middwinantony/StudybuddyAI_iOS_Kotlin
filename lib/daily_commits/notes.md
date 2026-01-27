@@ -448,3 +448,6 @@
 
 ## 2026-01-26 14:47
 - Refactored code for improved readability
+
+## 2026-01-26 14:47
+- Updated helper methods for better efficiency
