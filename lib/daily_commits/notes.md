@@ -613,3 +613,6 @@
 
 ## 2026-02-03 16:14
 - Added utility functions for common operations
+
+## 2026-02-03 16:14
+- Updated helper methods for better efficiency
