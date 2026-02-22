@@ -835,3 +835,6 @@
 
 ## 2026-02-23 10:32
 - Added utility functions for common operations
+
+## 2026-02-23 10:32
+- Updated helper methods for better efficiency
