@@ -913,3 +913,6 @@
 
 ## 2026-03-03 09:12
 - Refactored code for improved readability
+
+## 2026-03-03 09:12
+- Updated helper methods for better efficiency
