@@ -955,3 +955,6 @@
 
 ## 2026-03-05 09:04
 - Refactored code for improved readability
+
+## 2026-03-06 09:06
+- Updated helper methods for better efficiency
