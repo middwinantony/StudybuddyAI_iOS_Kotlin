@@ -988,3 +988,6 @@
 
 ## 2026-03-10 09:08
 - Updated helper methods for better efficiency
+
+## 2026-03-10 09:08
+- Refactored code for improved readability
