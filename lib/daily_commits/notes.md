@@ -1480,3 +1480,6 @@
 
 ## 2026-04-28 10:39
 - Analyzed performance metrics
+
+## 2026-04-28 10:39
+- Updated helper methods for better efficiency
